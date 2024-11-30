@@ -1,0 +1,157 @@
+{
+  "tienda": {
+    "nombre": "Mi Tienda Online",
+    "categorias": [
+      {
+        "id": 1,
+        "nombre": "Electrónica",
+        "productos": [
+          {
+            "id": 101,
+            "nombre": "Smartphone",
+            "precio": 999.99,
+            "descripcion": "El último smartphone del mercado.",
+            "caracteristicas": {
+              "pantalla": "6.5 pulgadas",
+              "camara": "48 MP",
+              "bateria": "4500 mAh"
+            },
+            "imagenes": ["smartphone1.png", "smartphone2.png"],
+            "inventario": 20
+          },
+          {
+            "id": 102,
+            "nombre": "Laptop",
+            "precio": 1299.99,
+            "descripcion": "Laptop de alto rendimiento para profesionales.",
+            "caracteristicas": {
+              "pantalla": "15.6 pulgadas",
+              "procesador": "Intel i7",
+              "memoria": "16 GB RAM"
+            },
+            "imagenes": ["laptop1.png", "laptop2.png"],
+            "inventario": 20
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Accesorios",
+        "productos": [
+          {
+            "id": 201,
+            "nombre": "Cargador inalámbrico",
+            "precio": 49.99,
+            "descripcion": "Cargador rápido para dispositivos compatibles.",
+            "caracteristicas": {
+              "potencia": "15 W",
+              "compatibilidad": "Universal"
+            },
+            "imagenes": ["cargador1.png", "cargador2.png"],
+            "inventario": 20
+          },
+          {
+            "id": 202,
+            "nombre": "Auriculares Bluetooth",
+            "precio": 79.99,
+            "descripcion": "Auriculares inalámbricos con sonido envolvente.",
+            "caracteristicas": {
+              "autonomia": "10 horas",
+              "bluetooth": "5.0",
+              "micrófono": "Integrado"
+            },
+            "imagenes": ["auriculares1.png", "auriculares2.png"],
+            "inventario": 20
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "nombre": "Hogar",
+        "productos": [
+          {
+            "id": 301,
+            "nombre": "Bombilla Inteligente",
+            "precio": 24.99,
+            "descripcion": "Controla la iluminación desde tu smartphone.",
+            "caracteristicas": {
+              "color": "RGB",
+              "conexion": "WiFi",
+              "compatibilidad": "Alexa y Google Home"
+            },
+            "imagenes": ["bombilla.png", "bombilla2.png"],
+            "inventario": 20
+          },
+          {
+            "id": 302,
+            "nombre": "Cámara de Seguridad",
+            "precio": 199.99,
+            "descripcion": "Cámara con visión nocturna y grabación HD.",
+            "caracteristicas": {
+              "resolucion": "1080p",
+              "visionNocturna": "Sí",
+              "almacenamiento": "Nube y MicroSD"
+            },
+            "imagenes": ["camara1.png", "camara2.png"],
+            "inventario": 20
+          }
+        ]
+      }
+    ],
+    "usuarios": [
+      {
+        "id": 1,
+        "nombre": "Maaaaaartin",
+        "email": "apruebame@gmail.com",
+        "direccion": {
+          "calle": "Calle Ilerna",
+          "numero": 123,
+          "ciudad": "Sevilla",
+          "pais": "España"
+        },
+        "historialCompras": [
+          {
+            "productoId": 101,
+            "cantidad": 2,
+            "fecha": "2023-11-14"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Iván García",
+        "email": "97ivangarcia@gmail.com",
+        "direccion": {
+          "calle": "Pedro Ramirez",
+          "numero": 456,
+          "ciudad": "Sevilla",
+          "pais": "España"
+        },
+        "historialCompras": [
+          {
+            "productoId": 202,
+            "cantidad": 1,
+            "fecha": "2023-10-20"
+          },
+          {
+            "productoId": 301,
+            "cantidad": 3,
+            "fecha": "2023-11-05"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "nombre": "Vince McMahon",
+        "email": "vincewwe@gmail.com",
+        "direccion": {
+          "calle": "Calle Abusos",
+          "numero": 789,
+          "ciudad": "Chicago",
+          "pais": "EEUU"
+        },
+        "historialCompras": []
+      }
+    ]
+  }
+}

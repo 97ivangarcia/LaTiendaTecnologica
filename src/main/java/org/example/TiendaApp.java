@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -41,6 +42,7 @@ public class TiendaApp extends JFrame {
     }
 
     private void inicializarComponentes() {
+        // Banner
         JLabel banner = new JLabel();
         URL bannerUrl = getClass().getClassLoader().getResource("bannertienda.png");
 
@@ -57,39 +59,42 @@ public class TiendaApp extends JFrame {
         banner.setOpaque(true);
         banner.setBackground(new Color(40, 40, 40));
 
+        // Panel Usuario
         JPanel panelUsuario = crearPanelConTitulo("Datos del Usuario");
         panelUsuario.setLayout(new BorderLayout());
         clientesBox = new JComboBox<>();
         clientesBox.setBackground(new Color(50, 50, 50));
         clientesBox.setForeground(new Color(200, 200, 200));
-        clientesBox.setFont(new Font("Open Sans", Font.PLAIN, 14));
+        clientesBox.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
         clientesBox.setBorder(new LineBorder(new Color(128, 0, 255), 1, true));
         clientesBox.addActionListener(e -> actualizarCliente());
         usuarioArea = crearTextArea();
         panelUsuario.add(clientesBox, BorderLayout.NORTH);
         panelUsuario.add(new JScrollPane(usuarioArea), BorderLayout.CENTER);
 
+        // Panel Productos
         JPanel panelProductos = crearPanelConTitulo("Seleccionar Categoría y Producto");
         categoriasBox = new JComboBox<>();
         categoriasBox.setBackground(new Color(50, 50, 50));
         categoriasBox.setForeground(new Color(200, 200, 200));
-        categoriasBox.setFont(new Font("Open Sans", Font.PLAIN, 14));
+        categoriasBox.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
         categoriasBox.setBorder(new LineBorder(new Color(128, 0, 255), 1, true));
         categoriasBox.addActionListener(e -> cargarProductos());
 
         productosBox = new JComboBox<>();
         productosBox.setBackground(new Color(50, 50, 50));
         productosBox.setForeground(new Color(200, 200, 200));
-        productosBox.setFont(new Font("Open Sans", Font.PLAIN, 14));
+        productosBox.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
         productosBox.setBorder(new LineBorder(new Color(128, 0, 255), 1, true));
         productosBox.addActionListener(e -> mostrarProductoSeleccionado());
 
         stockValue = new JLabel("20");
-        stockValue.setFont(new Font("Roboto", Font.BOLD, 16));
+        stockValue.setFont(new Font("Roboto", Font.BOLD, 22)); // Tamaño aumentado
         stockValue.setForeground(new Color(128, 0, 255));
 
         cantidadSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
-        cantidadSpinner.setPreferredSize(new Dimension(80, 30));
+        cantidadSpinner.setPreferredSize(new Dimension(100, 40)); // Tamaño aumentado
+        cantidadSpinner.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
         cantidadSpinner.setBackground(new Color(50, 50, 50));
         cantidadSpinner.setForeground(new Color(200, 200, 200));
 
@@ -107,19 +112,22 @@ public class TiendaApp extends JFrame {
         panelProductos.add(seleccionPanel, BorderLayout.NORTH);
         panelProductos.add(imagenesPanel, BorderLayout.CENTER);
 
+        // Panel Historial
         JPanel panelHistorial = crearPanelConTitulo("Historial de Compras");
         historialArea = crearTextArea();
         panelHistorial.add(new JScrollPane(historialArea), BorderLayout.CENTER);
 
+        // Botón Comprar
         JButton btnComprar = new JButton("Comprar");
-        btnComprar.setFont(new Font("Open Sans", Font.BOLD, 14));
+        btnComprar.setFont(new Font("Open Sans", Font.BOLD, 18)); // Tamaño aumentado
         btnComprar.setBackground(new Color(128, 0, 255));
         btnComprar.setForeground(Color.WHITE);
         btnComprar.setFocusPainted(false);
-        btnComprar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        btnComprar.setBorder(BorderFactory.createEmptyBorder(15, 30, 15, 30)); // Márgenes aumentados
         btnComprar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnComprar.addActionListener(e -> realizarCompra());
 
+        // Agregar componentes al JFrame
         add(banner, BorderLayout.NORTH);
         add(panelUsuario, BorderLayout.WEST);
         add(panelProductos, BorderLayout.CENTER);
@@ -145,6 +153,32 @@ public class TiendaApp extends JFrame {
         textArea.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         return textArea;
     }
+
+    private ImageIcon crearImagenRedondeadaConBorde(Image originalImage, int width, int height, Color borderColor, int borderThickness) {
+        int diameter = Math.min(width, height);
+        BufferedImage roundedImage = new BufferedImage(width + borderThickness * 2, height + borderThickness * 2, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2 = roundedImage.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Fondo transparente
+        g2.setComposite(AlphaComposite.Clear);
+        g2.fillRect(0, 0, roundedImage.getWidth(), roundedImage.getHeight());
+        g2.setComposite(AlphaComposite.SrcOver);
+
+        // Dibujar borde
+        g2.setColor(borderColor);
+        g2.fillOval(0, 0, diameter + borderThickness * 2, diameter + borderThickness * 2);
+
+        // Dibujar imagen redondeada
+        g2.setClip(new java.awt.geom.Ellipse2D.Float(borderThickness, borderThickness, diameter, diameter));
+        g2.drawImage(originalImage, borderThickness, borderThickness, width, height, null);
+        g2.dispose();
+
+        return new ImageIcon(roundedImage);
+    }
+
+
 
     private void cargarDatos() {
         tiendaJSON = cargarArchivoJSON("DatosJSON.json");
@@ -259,9 +293,16 @@ public class TiendaApp extends JFrame {
             URL imagenUrl = getClass().getClassLoader().getResource(nombreImagen);
 
             if (imagenUrl != null) {
-                ImageIcon icon = new ImageIcon(new ImageIcon(imagenUrl).getImage()
-                        .getScaledInstance(450, 450, Image.SCALE_SMOOTH));
-                JLabel labelImagen = new JLabel(icon);
+                // Cargar la imagen original y aplicar borde y redondeado
+                ImageIcon originalIcon = new ImageIcon(imagenUrl);
+                ImageIcon roundedIcon = crearImagenRedondeadaConBorde(
+                        originalIcon.getImage(),
+                        400, 400, // Tamaño de la imagen redondeada
+                        new Color(128, 0, 255), // Color del borde morado
+                        10 // Grosor del borde
+                );
+
+                JLabel labelImagen = new JLabel(roundedIcon);
                 labelImagen.setHorizontalAlignment(SwingConstants.CENTER);
                 imagenesPanel.add(labelImagen);
             } else {
@@ -274,6 +315,8 @@ public class TiendaApp extends JFrame {
         imagenesPanel.revalidate();
         imagenesPanel.repaint();
     }
+
+
 
     private void realizarCompra() {
         String cliente = (String) clientesBox.getSelectedItem();

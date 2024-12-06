@@ -65,7 +65,7 @@ public class TiendaApp extends JFrame {
         clientesBox = new JComboBox<>();
         clientesBox.setBackground(new Color(50, 50, 50));
         clientesBox.setForeground(new Color(200, 200, 200));
-        clientesBox.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
+        clientesBox.setFont(new Font("Open Sans", Font.PLAIN, 18));
         clientesBox.setBorder(new LineBorder(new Color(128, 0, 255), 1, true));
         clientesBox.addActionListener(e -> actualizarCliente());
         usuarioArea = crearTextArea();
@@ -77,24 +77,24 @@ public class TiendaApp extends JFrame {
         categoriasBox = new JComboBox<>();
         categoriasBox.setBackground(new Color(50, 50, 50));
         categoriasBox.setForeground(new Color(200, 200, 200));
-        categoriasBox.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
+        categoriasBox.setFont(new Font("Open Sans", Font.PLAIN, 18));
         categoriasBox.setBorder(new LineBorder(new Color(128, 0, 255), 1, true));
         categoriasBox.addActionListener(e -> cargarProductos());
 
         productosBox = new JComboBox<>();
         productosBox.setBackground(new Color(50, 50, 50));
         productosBox.setForeground(new Color(200, 200, 200));
-        productosBox.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
+        productosBox.setFont(new Font("Open Sans", Font.PLAIN, 18));
         productosBox.setBorder(new LineBorder(new Color(128, 0, 255), 1, true));
         productosBox.addActionListener(e -> mostrarProductoSeleccionado());
 
         stockValue = new JLabel("20");
-        stockValue.setFont(new Font("Roboto", Font.BOLD, 22)); // Tamaño aumentado
+        stockValue.setFont(new Font("Roboto", Font.BOLD, 22));
         stockValue.setForeground(new Color(128, 0, 255));
 
         cantidadSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
-        cantidadSpinner.setPreferredSize(new Dimension(100, 40)); // Tamaño aumentado
-        cantidadSpinner.setFont(new Font("Open Sans", Font.PLAIN, 18)); // Tamaño aumentado
+        cantidadSpinner.setPreferredSize(new Dimension(100, 40));
+        cantidadSpinner.setFont(new Font("Open Sans", Font.PLAIN, 18));
         cantidadSpinner.setBackground(new Color(50, 50, 50));
         cantidadSpinner.setForeground(new Color(200, 200, 200));
 
@@ -297,8 +297,8 @@ public class TiendaApp extends JFrame {
                 ImageIcon originalIcon = new ImageIcon(imagenUrl);
                 ImageIcon roundedIcon = crearImagenRedondeadaConBorde(
                         originalIcon.getImage(),
-                        400, 400, // Tamaño de la imagen redondeada
-                        new Color(128, 0, 255), // Color del borde morado
+                        400, 400, // Tamaño de la imagen
+                        new Color(128, 0, 255), // borde morado
                         10 // Grosor del borde
                 );
 

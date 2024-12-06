@@ -30,7 +30,7 @@ public class TiendaApp extends JFrame {
     private JSONObject tiendaJSON;
 
     public TiendaApp() {
-        setTitle("Tienda Virtual - Mi Empresa");
+        setTitle("Tienda Virtual");
         setSize(1200, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -92,6 +92,7 @@ public class TiendaApp extends JFrame {
         stockValue.setFont(new Font("Roboto", Font.BOLD, 22));
         stockValue.setForeground(new Color(128, 0, 255));
 
+        //Con esto seleccionamos la cantidad que queremos comprar
         cantidadSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
         cantidadSpinner.setPreferredSize(new Dimension(100, 40));
         cantidadSpinner.setFont(new Font("Open Sans", Font.PLAIN, 18));
@@ -401,7 +402,7 @@ public class TiendaApp extends JFrame {
                 }
             }
         }
-        return 0.0; // Devuelve 0 si no encuentra el producto
+        return 0.0; // Si no encuentra el producto mostrara 0
     }
 
 
